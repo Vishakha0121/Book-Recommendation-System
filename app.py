@@ -2,14 +2,14 @@ from flask import Flask, render_template, request
 import pickle
 import pandas as pd
 import numpy as np
+import os
 
 popular_df = pickle.load(open('popular.pkl', 'rb'))
 pt = pickle.load(open('pt.pkl', 'rb'))
 books = pickle.load(open('book.pkl', 'rb'))
 ratings_similarity = pickle.load(open('ratings_similarity.pkl', 'rb'))
 
-
-app = Flask(__name__)
+app = Flask(__name__, template_folder=os.path.dirname(os.path.abspath(__file__)))
 
 @app.route('/')
 def index():
